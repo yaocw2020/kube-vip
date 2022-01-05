@@ -3,7 +3,7 @@ name: Publish the latest dev image
 on:
   push:
     branches:
-      - 'master'
+      - 'test-github-actions'
 
 jobs:
   docker:
@@ -15,10 +15,9 @@ jobs:
       - name: Prepare Names
         id: prep
         run: |
-          DOCKER_IMAGE=plndr/kube-vip
-          VERSION=$(echo ${GITHUB_SHA} | cut -c1-8)
+          DOCKER_IMAGE=armarny/kube-vip
+          VERSION=dev
           TAGS="${DOCKER_IMAGE}:${VERSION}"
-          TAGS="$TAGS,${DOCKER_IMAGE}:nightly"
           echo ::set-output name=tags::${TAGS}
 
       - name: Set up QEMU
